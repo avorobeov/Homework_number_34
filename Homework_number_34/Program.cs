@@ -18,7 +18,7 @@ namespace Homework_number_34
             {
                 balance = HandleClient(clients, balance);
 
-                Console.ReadLine();
+                Console.ReadKey();
                 Console.Clear();
             }
         }
