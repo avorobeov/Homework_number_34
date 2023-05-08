@@ -10,31 +10,29 @@ namespace Homework_number_34
             Queue<int> clients = new Queue<int>();
 
             int numberClients = 10;
-            int balance = 0;
 
-            clients = FillQueue(clients, numberClients);
+            FillQueue(clients, numberClients);
+
+            ServeClient(clients);
+        }
+
+        private static void ServeClient(Queue<int> clients)
+        {
+            int balance = 0;
 
             while (clients.Count > 0)
             {
-                balance = HandleClient(clients, balance);
+                Console.WriteLine($"Клиент сделал оплату в кассу добавилось {clients.Peek()} рублей.");
 
+                balance += clients.Dequeue();
+
+                Console.WriteLine($"\nКаса вашего магазина ровняется {balance} рублей");
                 Console.ReadKey();
                 Console.Clear();
             }
         }
 
-        private static int HandleClient(Queue<int> clients, int balance)
-        {
-            Console.WriteLine($"Клиент сделал оплату в кассу добавилось {clients.Peek()} рублей.");
-
-            balance += clients.Dequeue();
-
-            Console.WriteLine($"\nКаса вашего магазина ровняется {balance} рублей");
-
-            return balance;
-        }
-
-        private static Queue<int> FillQueue(Queue<int> clients, int numberClients)
+        private static void FillQueue(Queue<int> clients, int numberClients)
         {
             Random random = new Random();
 
@@ -45,8 +43,6 @@ namespace Homework_number_34
             {
                 clients.Enqueue(random.Next(minValue, maxValue));
             }
-
-            return clients;
         }
     }
 }
